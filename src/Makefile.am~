@@ -1,0 +1,2 @@
+bin_PROGRAMS=cebook
+cebook_SOURCES=Cebook.c

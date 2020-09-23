@@ -1,0 +1,84 @@
+#+TITLE: Cebook
+#+AUTHOR: Aziz Faozi
+#+LATEX_HEADER: \usepackage[margin=1.0in]{geometry}
+
+
+* Pengantar 
+Ceebok adalah buku elektronik catatan kisah menggunakan bahasa pemrograman C.
+
+* Builder
+** Menggunakan Autoreconf 
+Untuk melakukan build dengan menggunakan autoreconf kita bisa melihatnya pada
+bagian berikut ini
+*** Installasi Automake
+Berikut cara installasi untuk membuat file di automake.
+#+BEGIN_SRC BASH
+sudo pacman -Sy automake 
+#+END_SRC
+
+** Mempersiapkan file 
+Beberapa file dibutuhkan agar anda bisa melakukan packaging dengan menggunakan automake.
+- file code (src/Cebook.c)
+Buatlah sebuah code untuk bisa ditest dengan menggunakan autoreconf, namakan code 
+tersebut Cebook.c.
+#+BEGIN_SRC C
+#include<stdio.h>
+int main(){
+printf("Check kode\n");
+return 0;
+}
+#+END_SRC
+
+- Membuat Readme (README.md)
+Disini menggunakan markdown agar bisa dengan mudah dibaca ketika di publish 
+di server git. Berikut contennya.
+#+BEGIN_SRC markdown
+# Cebook
+## Deskripsi 
+Sebuah program untuk mengetes seberapa dekat anda dengan bahasa pemrograman
+C. Mungkin anda akan terkesan ketika anda melihat betapa seksinya bahasa 
+pemrograman C. 
+#+END_SRC
+- Membuat Makefile.am 
+Ada dua macam makefile yang akan kita gunakan yang pertama ada di source 
+direktori(src/Makefile.am), dan yang kedua ada di directory root(Makefile.am).
+Berikut contentnya.
+1. src/Makefile.am
+#+BEGIN_SRC automake
+bin_PROGRAMS=cebook
+cebook_SOURCES=Cebook.c
+#+END_SRC 
+2. Makefile.am
+#+BEGIN_SRC automake
+SUBDIRS=src
+dist_doc_data=README.md
+#+END_SRC
+- membuat configure.ac
+#+BEGIN_SRC ac
+AC_INIT([Cebook], [1,0], [admin@labseni.com])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AC_PROG_CC
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([
+Makefile
+src/Makefile
+])
+AC_OUTPUT
+#+END_SRC
+** Test Build and run
+Jalankan perintah berikut
+#+BEGIN_SRC bash
+autoreconf -i
+./configure
+make
+#+END_SRC
+Perintah diatas untuk melakukan build, dan perintah selanjutnya untuk run
+#+BEGIN_SRC bash
+./src/cebook
+#+END_SRC
+* Syntax
+** Poiners dan Array
+Pointer dan Array merupakan salah satu bagian terseksi dari pemrograman C karena 
+beberapa algoritma bisa dibangun dengan memanfaatkan resource ini. Salah satu
+yang menarik dari C adalah kita bisa mengetahui lokasi memory yang sedang kita
+gunakan untuk memanggil varibel atau konstanta. Berikut contohnya.
