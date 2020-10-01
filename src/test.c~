@@ -1,0 +1,8 @@
+#include "global.h"
+
+int tester_man(){
+
+  printf("tester itu disini\n");
+  return 0;
+
+}

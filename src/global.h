@@ -7,6 +7,7 @@
 /* ini untuk menjadi semisal*/
 void PointerAndArrays();
 void mantap();
-
+int tester_man();
+char * tester_char();
 
 #endif

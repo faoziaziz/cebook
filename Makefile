@@ -14,6 +14,8 @@
 
 
 
+# mantap
+
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -238,7 +240,7 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1,0
 PATH_SEPARATOR = :
 SET_MAKE = 
-SHELL = /bin/sh
+SHELL = /bin/bash
 STRIP = 
 VERSION = 1,0
 abs_builddir = /home/aziz/dev/cebook
