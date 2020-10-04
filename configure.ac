@@ -7,7 +7,7 @@ Makefile
 src/Makefile
 ])
 
-
+PKG_CHECK_MODULES([GTK3], [gtk+-3.0])
 
 AC_SEARCH_LIBS([curl_easy_setopt], [curl], [], [
   AC_MSG_ERROR([libcurlnya belum diinstall])
@@ -25,4 +25,7 @@ AC_SEARCH_LIBS([gps_stream], [gps], [], [
   AC_MSG_ERROR([GPS belum diinstall])
 ])
 
+AC_SEARCH_LIBS([cos], [m], [], [
+  AC_MSG_ERROR([math belum diinstall])
+])
 AC_OUTPUT

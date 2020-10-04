@@ -101,9 +101,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(includedir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_cebook_OBJECTS = Cebook.$(OBJEXT) client.$(OBJEXT) test.$(OBJEXT)
+am_cebook_OBJECTS = Cebook.$(OBJEXT) client.$(OBJEXT) test.$(OBJEXT) \
+	chapter4.$(OBJEXT)
 cebook_OBJECTS = $(am_cebook_OBJECTS)
-cebook_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+cebook_DEPENDENCIES = $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -119,8 +121,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/Cebook.Po ./$(DEPDIR)/client.Po \
-	./$(DEPDIR)/test.Po
+am__depfiles_remade = ./$(DEPDIR)/Cebook.Po ./$(DEPDIR)/chapter4.Po \
+	./$(DEPDIR)/client.Po ./$(DEPDIR)/test.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -208,6 +210,8 @@ ECHO_C =
 ECHO_N = -n
 ECHO_T = 
 EXEEXT = 
+GTK3_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+GTK3_LIBS = -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -215,7 +219,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lgps -lsqlite3 -lpthread -lcurl 
+LIBS = -lm -lgps -lsqlite3 -lpthread -lcurl 
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/aziz/dev/cebook/missing makeinfo
 MKDIR_P = /usr/bin/mkdir -p
@@ -228,6 +232,9 @@ PACKAGE_TARNAME = cebook
 PACKAGE_URL = 
 PACKAGE_VERSION = 1,0
 PATH_SEPARATOR = :
+PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
@@ -275,8 +282,11 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-cebook_SOURCES = Cebook.c client.c test.c
+AM_CFLAGS = $(GTK3_CFLAGS)
+ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
+cebook_SOURCES = Cebook.c client.c test.c chapter4.c
 include_HEADERS = global.h client.h conf.h
+cebook_LDADD = $(GTK3_LIBS)
 all: all-am
 
 .SUFFIXES:
@@ -364,6 +374,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/Cebook.Po # am--include-marker
+include ./$(DEPDIR)/chapter4.Po # am--include-marker
 include ./$(DEPDIR)/client.Po # am--include-marker
 include ./$(DEPDIR)/test.Po # am--include-marker
 
@@ -536,6 +547,7 @@ clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Cebook.Po
+	-rm -f ./$(DEPDIR)/chapter4.Po
 	-rm -f ./$(DEPDIR)/client.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile
@@ -584,6 +596,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Cebook.Po
+	-rm -f ./$(DEPDIR)/chapter4.Po
 	-rm -f ./$(DEPDIR)/client.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile

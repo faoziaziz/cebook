@@ -1,0 +1,14 @@
+#include "global.h"
+
+void CH4_1(){
+
+  int a=5;
+  double x = 3.14;
+  void *p;
+
+  p = &a;
+  printf("value of a = %d\n", *(int *)p);
+  p=&x;
+  printf("value of x = %g\n", *(double *)p);
+
+}

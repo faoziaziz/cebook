@@ -101,9 +101,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(includedir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_cebook_OBJECTS = Cebook.$(OBJEXT) client.$(OBJEXT) test.$(OBJEXT)
+am_cebook_OBJECTS = Cebook.$(OBJEXT) client.$(OBJEXT) test.$(OBJEXT) \
+	chapter4.$(OBJEXT)
 cebook_OBJECTS = $(am_cebook_OBJECTS)
-cebook_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+cebook_DEPENDENCIES = $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -119,8 +121,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/Cebook.Po ./$(DEPDIR)/client.Po \
-	./$(DEPDIR)/test.Po
+am__depfiles_remade = ./$(DEPDIR)/Cebook.Po ./$(DEPDIR)/chapter4.Po \
+	./$(DEPDIR)/client.Po ./$(DEPDIR)/test.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -208,6 +210,8 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EXEEXT = @EXEEXT@
+GTK3_CFLAGS = @GTK3_CFLAGS@
+GTK3_LIBS = @GTK3_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -228,6 +232,9 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -275,8 +282,11 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-cebook_SOURCES = Cebook.c client.c test.c
+AM_CFLAGS = $(GTK3_CFLAGS)
+ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
+cebook_SOURCES = Cebook.c client.c test.c chapter4.c
 include_HEADERS = global.h client.h conf.h
+cebook_LDADD = $(GTK3_LIBS)
 all: all-am
 
 .SUFFIXES:
@@ -364,6 +374,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Cebook.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/chapter4.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test.Po@am__quote@ # am--include-marker
 
@@ -536,6 +547,7 @@ clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Cebook.Po
+	-rm -f ./$(DEPDIR)/chapter4.Po
 	-rm -f ./$(DEPDIR)/client.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile
@@ -584,6 +596,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Cebook.Po
+	-rm -f ./$(DEPDIR)/chapter4.Po
 	-rm -f ./$(DEPDIR)/client.Po
 	-rm -f ./$(DEPDIR)/test.Po
 	-rm -f Makefile
