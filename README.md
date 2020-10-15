@@ -2,7 +2,7 @@
 ## Dependency
 untuk membuat gtk anda bisa menggunakan kommand berikut
 ```sh
-sudp apt-get install libgtk3-dev
+sudp apt-get install libgtk-3-dev
 ```
 ## Deskripsi 
 Sebuah program untuk mengetes seberapa dekat anda dengan bahasa pemrograman
